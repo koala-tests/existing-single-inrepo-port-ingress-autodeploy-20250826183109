@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: existing-single-inrepo-port-ingress-autodeploy-20250826183109
+  labels:
+    app: existing-single-inrepo-port-ingress-autodeploy-20250826183109
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: existing-single-inrepo-port-ingress-autodeploy-20250826183109
+  template:
+    spec:
+      containers:
+      - name: existing-single-inrepo-port-ingress-autodeploy-20250826183109
+        image: ghcr.io/existing-single-inrepo-port-ingress-autodeploy-20250826183109:latest
+        resources:
+          requests:
+            cpu: 200m
+            memory: 512Mi
+          limits:
+            cpu: 1000m
+            memory: 2048Mi
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: existing-single-inrepo-port-ingress-autodeploy-20250826183109-container-vars
+    metadata:
+      labels:
+        app: existing-single-inrepo-port-ingress-autodeploy-20250826183109
